@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>To-Do List</title>
+
+        <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://code.jquery.com/jquery-3.7.0.js"></script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&display=swap"
+            rel="stylesheet">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link
+            href="https://fonts.googleapis.com/css2?family=Alegreya+Sans+SC&display=swap"
+            rel="stylesheet">
+
+        <style>
+
+        body{
+            background: url("bg2.jpg");
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+        #frame{
+            background: url("bg2.jpg");
+            border: 1px solid rgb(0,50,133);
+            background-color: #08eeee3f;
+            border-radius: 5px;
+            box-shadow: 1px 1px 10px black;
+        }
+        #a{
+            font-family: 'Cinzel', serif;
+        }
+        #b{
+            padding-left: 35px;
+            font-family: 'Cinzel', serif;
+        }
+        #fr1{
+            text-align: center;
+            padding: 0 50px 5px 50px;
+        }
+        #l{
+            list-style-type: none;
+            
+        }
+        li{
+            border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+            width: 235px;
+            padding-bottom: 15px;
+            font-size: 17px;
+        }
+        
+        li:not(:first-child){   
+            padding-top: 15px;
+        }
+        li:last-child{
+            border-bottom: none;
+        }
+        .l2 , .del-list{
+           position: fixed;
+           /* left: 360px; */
+           left: 760px;
+        }
+        li{
+            cursor: pointer;
+            font-family: 'Alegreya Sans SC', sans-serif;
+            padding-right: 20px;
+        }
+        button{
+           background-color:rgba(231, 85, 27, 0.13);
+           border: none;
+           padding: 4px 10px;
+           border-radius: 5px;
+           font-family: 'Alegreya Sans SC', sans-serif;
+           color: rgba(255, 255, 255, 0.658);
+        }
+        #add-btn:hover{
+            background-color:rgba(50, 205, 50, 0.74);
+        }
+        button:hover{
+            background-color: rgba(255, 0, 0, 0.753);
+            color: white;
+        }
+        
+       
+    </style>
+
+    </head>
+    <body>
+        <div id="frame">
+            <div id="fr1">
+                <h1 id="a">To-Do List</h1>
+                <input type="text" id="inputbox">
+                <button id="add-btn" onclick="newtask()">Add</button>
+            </div>
+            <div id="fr2">
+                <h2 id="b">Tasks</h2>
+                <ul id="l">
+                    <li class="l1" id="def1" onclick="com1()">Wake up
+                        <button class="l2" id="m1" onclick="t1()">Delete</button>
+                    </li>
+                    <li class="l1" id="def2" onclick="com2()">Exercise
+                        <button class="l2" id="m2" onclick="t2()">Delete</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </body>
+
+    <script>
+
+     function newtask(){
+        let inputval = document.getElementById("inputbox").value
+        let txtnode = document.createTextNode(inputval) 
+        let list = document.createElement("li")
+        let del = document.createElement("button")
+        del.innerText="Delete"
+        del.className="del-list"
+        list.appendChild(txtnode)
+        list.appendChild(del)
+      
+
+        if(inputval === ""){
+            alert("You cannot add empty task")
+        }
+        else{
+            document.getElementById("l").appendChild(list)
+        }
+
+        document.getElementById("inputbox").value=""
+
+
+       
+
+    let close = document.getElementsByClassName("del-list");
+    let i;
+    for (i = 0; i < close.length; i++) {
+    close[i].onclick = function() {
+        var div = this.parentElement;
+        div.style.display = "none";
+
+    
+    }
+    }
+    }
+
+    function t1(){
+        let sm1 = document.getElementById("def1")
+        sm1.style.display="none"
+    }
+    function t2(){
+        let sm2 = document.getElementById("def2")
+        sm2.style.display="none"
+    }
+    
+    function com1(){
+        let c1 = document.getElementById("def1")
+        let m1 = document.getElementById("m1")
+        c1.style.textDecoration="line-through"
+        c1.style.color="grey"
+        m1.style.display="none"
+    }
+
+    function com2(){
+        let c2 = document.getElementById("def2")
+        let m2 = document.getElementById("m2")
+        c2.style.textDecoration="line-through"
+        c2.style.color="grey"
+        m2.style.display="none"
+    }
+    
+</script>
+</html>
